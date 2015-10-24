@@ -49,3 +49,6 @@ The `written.tex` file in this repo converts the pictures below to LaTeX.
 
 Here's the [compiled output](written.pdf) of the sample solution in this repo.
 
+## License
+
+MIT License. See LICENSE.
