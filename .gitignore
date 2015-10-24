@@ -1,0 +1,10 @@
+.*.sw[nop]
+tags
+
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb

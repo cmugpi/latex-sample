@@ -1,0 +1,115 @@
+\documentclass[11pt,largemargins]{homework}
+
+\newcommand{\hwname}{Jake Zimmerman}
+\newcommand{\hwemail}{jezimmer}
+\newcommand{\hwtype}{Homework}
+\newcommand{\hwnum}{1}
+\newcommand{\hwclass}{15-131}
+\newcommand{\hwlecture}{1}
+\newcommand{\hwsection}{A}
+
+\begin{document}
+\maketitle
+
+\question
+
+% Let's put statement of problem in italic for the lulz
+\textit{Prove that \(A \cup (B \cap C) = (A \cup B) \cap C\), where \(A\),
+\(B\), and \(C\) are sets such that \(A \subseteq C\)}.
+
+% This makes the fancy italic "Proof." show up in the document
+\begin{proof}
+  % You'll notice that I'm using \( ... \) to encode inline mathematical
+  % statements. This is the same as $ ... $, but nicer because you can see which
+  % parentheses are matched with each other.
+  Let \(x \in A \cup (B \cap C)\) be arbitrary and fixed. Then:
+
+  % Some notes:
+  % You can use \begin{align*} ... \end{align*} to make centered, "display" math
+  % You can use \tag{...} to provide justification for your steps
+  % Indentation makes it easy to reason about your syntax if you have errors.
+  \begin{align*}
+    x \in A \cup (B \cap C) &\iff x \in A \vee x \in (B \cap C)                          \tag{Definition of \(\cup\)} \\
+                            &\iff x \in A \vee (x \in B \wedge x \in C)                  \tag{Definition of \(\cap\)} \\
+                            &\iff (x \in A \wedge x \in C) \vee (x \in B \wedge x \in C) \tag{\(A \subseteq C\)} \\
+                            &\iff (x \in A \vee x \in B) \wedge x \in C                  \tag{Distributivity} \\
+                            &\iff (x \in (A \cup B) \wedge x \in C                       \tag{Definition of \(\cup\)} \\
+                            &\iff x \in (A \cup B) \cap C                                \tag{Definition of \(\cap\)} \\
+  \end{align*}
+
+  Therefore, since we have shown that an arbitrary element of \(A \cup (B \cap
+  C)\) is in \(A \cup (B \cap C)\) and vice versa, we have proven that these two
+  sets are equal.
+\end{proof}
+
+\question
+
+% \[ ... \] is like \( ... \) except that it puts the math on its own line, like
+% \begin{align*} ... \end{align*}
+\textit{For any \(n \in \mathbb{N}\) define \(S_n = \sum_{i = 1}^{n}{i^2}\).
+Prove \[\forall n \in N. \, S_n = \frac{n(n + 1)(2n + 1)}{6}\]}
+
+\begin{proof}
+  Let \(P(n) \iff S_n = \frac{n(n + 1)(2n + 1)}{6}\). We will prove \(P(n)\) by
+  induction on \(n \in \mathbb{N}\).
+
+  \begin{induction}
+    \basecase
+      When \(n = 0\), \(P(0) \iff \frac{(0)(1)(1)}{6} = S_0\). Since \(S_0 =
+      0\), \(P(n)\) is true.
+    \indhyp
+      Assume \(P(k)\) for some \(k \in \mathbb{N}\).
+    \indstep
+      Note that \(S_k = \frac{k(k + 1)(2k + 1)}{6}\) and that
+      \begin{align*}
+        S_{k + 1} = \sum_{i = 1}^{k + 1}{i^2} = \sum_{i = 1}^{k}{i^2} + (k + 1)^2 = S_k + (k + 1)^2 \\
+      \end{align*}
+      Therefore, we can substitute and rewrite the expression as follows:
+      \begin{align*}
+        S_{k+1} &= S_k + (k + 1)^2 \\
+                &= \frac{k(k + 1)(2k + 1)}{6} + (k + 1)^2 \\
+                &= (k + 1)\left(\frac{k(2k + 1) + (k + 1)}{6}\right) \\
+                &= \frac{(k + 1)}{6}\left(k(2k + 1) + 6(k + 1)\right) \\
+                &= \frac{(k + 1)}{6}(2k^2 + 7k + 6) \\
+                &= \frac{(k + 1)((k + 1) + 1)(2(k + 1) + 1)}{6} \\
+      \end{align*}
+      Thus we can conclude that \(P(k + 1)\) is true.
+  \end{induction}
+  Therefore, because the base case and the induction step hold, \(P(n)\) is true
+  for all \(n \in \mathbb{N}\) by induction.
+\end{proof}
+
+% We can force a page break like this. It helps when otherwise you'd end up with
+% a short bit of text disconnected from the rest on the previous page (try
+% removing it and seeing how it looks without).
+\newpage
+\question
+
+\begin{alphaparts}
+  \questionpart
+    \textit{Count the rectangles of all sizes and of all positions that are formed
+    using segments in a grid with \(m\) horizontal and \(n\) vertical lines.}
+
+    \textit{Solution.} A rectangle is uniquely described by two distinct vertical
+    lines and two distinct horizontal lines. Therefore we can just select these two
+    lines and multiply these quantities by rule of product:
+    \begin{align*}
+      \binom{n}{2}\binom{m}{2}
+    \end{align*}
+
+  \questionpart
+    % Quotes in LaTeX are weird: use `` ... '' to get the proper curly quotes.
+    \textit{How many ways are there to rearrange the letters in the word
+    ``anagram''?}
+
+    \textit{Solution.} We can choose an arrangement of the letters in
+    ``anagram'' in two steps. We first choose 3 of the 7 positions to be a's,
+    then permute ``ngrm'' in the remaining positions. Thus, we have
+    \begin{align*}
+      \binom{7}{3} 4!
+    \end{align*}
+    ways to choose an arrangement.
+\end{alphaparts}
+
+
+\end{document}
